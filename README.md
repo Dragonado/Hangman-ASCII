@@ -12,3 +12,5 @@ Basic Rules of Hangman:
 There are thousands of codes that are better,faster and more efficient than this one.
 
 I only created this mini game in python3 to just become familiar with the langauge
+
+Notes: Words.txt was taken from https://github.com/Xethron/Hangman/blob/master/words.txt
