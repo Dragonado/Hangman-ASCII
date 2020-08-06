@@ -1,5 +1,5 @@
 # Hangman-ASCII
-The classical Hangman implemented in python3 from scratch
+The classical Hangman implemented in python3 from scratch. The hangman is displayed using ASCII art.
 
 Words.txt contains the English words that are used for the game.
 
