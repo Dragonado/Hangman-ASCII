@@ -145,10 +145,24 @@ def ask_move(played_moves):
     return ch.lower()
 
 
+def display_vowel():
+    # displays the number of vowels in the word as hint
+    clear()
+    print("It seems you are not doing too well")
+    print("Here is a hint: ", end='')
+
+    cnt = 0
+    for ch in {'a', 'e', 'i', 'o', 'u'}:
+        cnt += word.count(ch)
+    print("There are", cnt, "vowel(s) in the word")
+    input()
+
+
 def display(played_moves, lives_lost):
     # Display messages when the user is trying to guess
+    if lives_lost == 3:
+        display_vowel()
     clear()
-
     if lives_lost == lives:
         game_over()
     print("Lives left = ", lives-lives_lost-1)
