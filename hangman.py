@@ -83,18 +83,25 @@ answer = ['_'] * len(word)
 def game_over():
     clear()
     print("The answer was actually!!!")
-    print("*Drum roll....*")
-    time.sleep(2)
+    print("*Drum roll*")
+
+    for i in range(4):
+        print('.', end='')
+        time.sleep(0.5)
+    # for some reason the above 3 lines don't work, some flushing issues?
+    print('')
 
     print(word.title())
-    # for i in range(len(word)):
-    #     print(word[i], end='')
-    # print('')
+
     if '_' in answer:
+        # there exists an character which wasn't guessed
+        # Therefore user loses
         print(hangman[-1])
         print("Hangman DIED!")
         print("Press F to pay respects")
     else:
+        # All characters were guessed
+        # Therefore user wins
         print("Well done, you got it correct. He lives to fight another day!")
         print("Press any key to quit")
     input()
@@ -102,6 +109,8 @@ def game_over():
 
 
 def bad_move():
+    # display message when the user
+    # guesses a character that wasn't in the word
     clear()
     print("That was a bad move.")
     print("Hangman is now one step closer to death")
@@ -110,6 +119,8 @@ def bad_move():
 
 
 def good_move(move):
+    # Display message when the user
+    # guess a character that exists in the word
     clear()
     print("Nice thinking!")
     print("That was a good move.")
@@ -121,6 +132,8 @@ def good_move(move):
 
 
 def ask_move(played_moves):
+    # This function takes input of a single alphabet
+    # in lowercase and that which hasn't been guessed before
     valid = False
 
     ch = ''
@@ -133,6 +146,7 @@ def ask_move(played_moves):
 
 
 def display(played_moves, lives_lost):
+    # Display messages when the user is trying to guess
     clear()
 
     if lives_lost == lives:
@@ -154,7 +168,6 @@ def welcome():
     print("Hello there!")
     print("Welcome to the game of Hangman")
     print("Guess letters of a hidden word and prevent hangman from hanging")
-    print("Ironic Lmao!")
     print("Press any key to start....")
     input()
 
@@ -164,12 +177,15 @@ def main():
     clear()
     lives_lost = 0
     played_moves = []
+
     while True:
+        # Loop runs atmost 6 times
         display(played_moves, lives_lost)
         move = ask_move(played_moves)
         played_moves.append(move)
 
         if move not in word:
+            # bad move
             lives_lost += 1
             if lives_lost == lives:
                 game_over()
